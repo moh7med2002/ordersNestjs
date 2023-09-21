@@ -6,6 +6,7 @@ import {
   ForeignKey,
   BelongsTo,
   BelongsToMany,
+  Scopes,
 } from 'sequelize-typescript';
 import { Category } from '../category/category.entity';
 import { Cart } from '../cart/cart.entity';
@@ -14,6 +15,11 @@ import { OrderProduct } from '../orderProduct/orderProduct.entity';
 import { Order } from '../order/order.entity';
 
 @Table
+@Scopes(() => ({
+  withoutTimeStamps: {
+    attributes: { exclude: ['createdAt', 'updatedAt'] },
+  },
+}))
 export class Product extends Model {
   @Column({ allowNull: false, autoIncrement: true, primaryKey: true })
   id: number;

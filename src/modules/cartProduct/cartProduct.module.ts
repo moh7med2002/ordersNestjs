@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { cartProductRepositry } from 'src/constants/entityRepositry';
 import { CartProduct } from './cartProduct.entity';
+import { CartProductService } from './cartProduct.service';
 
 @Module({
   controllers: [],
@@ -9,6 +10,8 @@ import { CartProduct } from './cartProduct.entity';
       provide: cartProductRepositry,
       useValue: CartProduct,
     },
+    CartProductService,
   ],
+  exports: [CartProductService],
 })
 export class CartProductModule {}
